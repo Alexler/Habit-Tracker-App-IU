@@ -4,3 +4,18 @@
 
 #Scope of this part:
 #This is the Habit class that will save and load habits
+
+import sqlite3
+from habit import Habit
+
+class storage_tracker:
+    def __init__(self, db_name):
+        self.db_name = db_name
+        self.conn = sqlite3.connect(db_name)
+        self.cursor = self.conn.cursor()
+
+    def setup_db(self):
+
+    def save_habit(self, habit):
+
+    def load_habit(self):

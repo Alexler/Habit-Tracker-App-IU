@@ -6,6 +6,7 @@
 #the application main part (logical processing and handover between classes) will be handled here
 
 from habit import Habit
+from storage import storage_tracker
 import time
 
 #Tests
@@ -30,5 +31,8 @@ print (drink_water.name+" streak = "+str(current_streak_water))
 
 print (running.name+" completed = "+str(running.completed))
 print (drink_water.name+" streak = "+str(current_streak_running))
+
+
+database = storage_tracker
 
 
