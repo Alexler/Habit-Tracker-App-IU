@@ -5,6 +5,7 @@
 #Scope of this part:
 #This is the Habit class that will be trackable by the user
 
+
 import datetime
 
 class Habit:

@@ -8,7 +8,6 @@
 from habit import Habit
 import time
 
-
 #Tests
 drink_water = Habit("Water","dont forget to drink","daily")
 running = Habit("running","sport activity","weekly")
