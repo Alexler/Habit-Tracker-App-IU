@@ -19,8 +19,6 @@ class Habit:
     def complete_habits(self):
         #a habit will be marked as completed here
         self.completed.append(datetime.datetime.now())
-        print("Habit "+self.name+" marked as complete")
-        print("Time = " + str(self.completed[0]))
 
     def get_habit_streak(self):
         # calculates the streak based on the habit's recurrence
