@@ -5,45 +5,57 @@
 #Scope of this part:
 #This is the Habit class that will be trackable by the user
 
-import datetime, time
+import datetime
 
 class Habit:
     def __init__(self, name: str, description: str, recurrence: str):
-        # initialization of a new habit
+        # initialization of a new habit // construtcor
         self.name = name
         self.description = description
         self.recurrence = recurrence
         self.create_time = datetime.datetime.now()
-        self.complete_time = []
-
-    def start_habits(self):
-        #a habit will be setup/start here
-        self.create_time = datetime.datetime.now()
-        print("Habit " + self.name + " started")
-#        print("Time = " + str(self.create_time))
+        self.completed = []
 
     def complete_habits(self):
         #a habit will be marked as completed here
-        self.complete_time.append(datetime.datetime.now())
+        self.completed.append(datetime.datetime.now())
         print("Habit "+self.name+" marked as complete")
-#        print("Time = " + str(self.complete_time[-1]))
+        print("Time = " + str(self.completed[0]))
 
-    def get_habit_streak_(self):
-        #calculates the streak based on the habit's recurrence
+    def get_habit_streak(self):
+        # calculates the streak based on the habit's recurrence
+
+        streaks_sotred = sorted(self.completed, reverse=True)
+
+        streak = 0
         today = datetime.datetime.now().date()
-        habit_date = self.complete_time[0].date()
-        if habit_date == today:
-            print("streak")
-        else:
-            print("no streak")
-            print("habit date="+str(habit_date))
-            print("today="+str(today))
+        recent_streak = streaks_sotred[0].date()
 
+        if self.recurrence == "daily":
+            if (today - recent_streak).days > 1:
+                return 0
+        elif self.recurrence == "weekly":
+            if (today - recent_streak).days > 7:
+                return 0
+        streak = 1
 
+        for i in range(len(streaks_sotred) - 1):
+            current_date = streaks_sotred[i].date()
+            previous_date = streaks_sotred[i + 1].date()
+            day_difference = (current_date - previous_date).days
 
-#Tests
-drink_water = Habit("Water","dont forget to drink","Wiederholung")
-drink_water.start_habits()
-time.sleep(2)
-drink_water.complete_habits()
-drink_water.get_habit_streak_()
+            if self.recurrence == "daily":
+                if day_difference == 1:
+                    streak += 1
+                elif day_difference == 0:
+                    continue
+                else:
+                    break
+
+            elif self.recurrence == "weekly":
+                if day_difference <= 7:
+                    streak += 1
+                else:
+                    break
+        return streak
+
