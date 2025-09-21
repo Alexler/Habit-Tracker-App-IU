@@ -15,7 +15,10 @@ class storage_tracker:
         self.cursor = self.conn.cursor()
 
     def setup_db(self):
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS habits(title, year, score)")
+        self.conn.commit()
+        print("Database table set up.")
 
-    def save_habit(self, habit):
+#    def save_habit(self, habit):
 
-    def load_habit(self):
+#    def load_habit(self):
