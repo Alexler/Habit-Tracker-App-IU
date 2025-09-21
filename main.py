@@ -15,7 +15,7 @@ import time
 database = storage_tracker("Tracker DB")
 database.setup_db()
 database.save_habit(Habit("TEST", "asdf", "daily"))
-
+database.load_habit()
 
 
 

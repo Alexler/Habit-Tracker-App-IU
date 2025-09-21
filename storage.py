@@ -23,7 +23,9 @@ class storage_tracker:
         data_to_storage = (habit.name, habit.description, habit.recurrence, habit.create_time)
         self.cursor.execute("INSERT OR REPLACE INTO habits(name, description, recurrence, create_time) VALUES (?,?,?,?)", data_to_storage)
         self.conn.commit()
-
         print("habit saved.")
 
-#    def load_habit(self):
+    def load_habit(self):
+        self.cursor.execute("SELECT * FROM habits")
+        habit_input = self.cursor.fetchall()
+        print(habit_input)
