@@ -19,6 +19,9 @@ class storage_tracker:
         self.conn.commit()
         print("Database table set up.")
 
-#    def save_habit(self, habit):
+    def save_habit(self, habit):
+        self.cursor.execute("INSERT INTO habits(name, description, occurence) VALUES (?,?,?)")
+
+        print("habit saved.")
 
 #    def load_habit(self):
