@@ -14,7 +14,7 @@ import time
 #running = Habit("running","sport activity","weekly")
 database = storage_tracker("Tracker DB")
 database.setup_db()
-database.save_habit(Habit("Habit 1", "asdf", "daily"))
+database.save_habit(Habit("TEST", "asdf", "daily"))
 
 #drink_water.complete_habits()
 #time.sleep(1)

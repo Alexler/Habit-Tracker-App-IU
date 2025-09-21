@@ -15,12 +15,12 @@ class storage_tracker:
         self.cursor = self.conn.cursor()
 
     def setup_db(self):
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS habits(title, year, score)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS habits(title TEXT, test TEXT, score TEXT)")
         self.conn.commit()
         print("Database table set up.")
 
     def save_habit(self, habit):
-        self.cursor.execute("INSERT INTO habits(name, description, occurence) VALUES (?,?,?)")
+        self.cursor.execute("INSERT OR REPLACE INTO habits() VALUES (?,?,?)")
 
         print("habit saved.")
 
