@@ -14,7 +14,7 @@ import time
 ### Create Database save and load habit###
 database = storage_tracker("Tracker DB")
 database.setup_db()
-database.save_habit(Habit("TEST", "asdf", "daily"))
+database.save_habit(Habit("new ", "example", "w"))
 database.load_habit()
 
 
