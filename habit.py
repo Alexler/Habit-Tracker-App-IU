@@ -23,12 +23,11 @@ class Habit:
 
     def get_habit_streak(self):
         # calculates the streak based on the habit's recurrence
-
-        streaks_sotred = sorted(self.completed, reverse=True)
+        streaks_sorted = sorted(self.completed, reverse=True)
 
         streak = 0
         today = datetime.datetime.now().date()
-        recent_streak = streaks_sotred[0].date()
+        recent_streak = streaks_sorted[0].date()
 
         if self.recurrence == "daily":
             if (today - recent_streak).days > 1:
@@ -38,9 +37,9 @@ class Habit:
                 return 0
         streak = 1
 
-        for i in range(len(streaks_sotred) - 1):
-            current_date = streaks_sotred[i].date()
-            previous_date = streaks_sotred[i + 1].date()
+        for i in range(len(streaks_sorted) - 1):
+            current_date = streaks_sorted[i].date()
+            previous_date = streaks_sorted[i + 1].date()
             day_difference = (current_date - previous_date).days
 
             if self.recurrence == "daily":

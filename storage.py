@@ -20,18 +20,18 @@ class storage_tracker:
         self.cursor.execute("CREATE TABLE IF NOT EXISTS complete_habits (name TEXT, habit_complete_time TEXT)")
 
         self.conn.commit()
-        print("Database table set up.")
 
     def save_habit(self, habit):
-        data_to_storage = (habit.name, habit.description, habit.recurrence, habit.create_time)
-        self.cursor.execute("INSERT OR REPLACE INTO habits(name, description, recurrence, create_time) VALUES (?,?,?,?)", data_to_storage)
-        self.cursor.execute("INSERT INTO complete_habits (name, habit_complete_time) VALUES (?, ?)", (habit.name, str(habit.completed)))
-
+        habit_to_storage = (habit.name, habit.description, habit.recurrence, habit.create_time)
+        habit_complete_time_to_storage = (habit.name, str(habit.completed))
+        self.cursor.execute("INSERT OR REPLACE INTO habits          (name, description, recurrence, create_time)    VALUES (?,?,?,?)", habit_to_storage)
+        self.cursor.execute("INSERT OR REPLACE INTO complete_habits (name, habit_complete_time)                     VALUES (?, ?)", habit_complete_time_to_storage)
         self.conn.commit()
-        print("habit saved.")
 
     def load_habit(self):
         self.cursor.execute("SELECT * FROM habits")
         habit_input = self.cursor.fetchall()
-        print(habit_input)
+        self.cursor.execute("SELECT * FROM complete_habits")
+        complete_habit_input = self.cursor.fetchall()
 
+        return habit_input, complete_habit_input
