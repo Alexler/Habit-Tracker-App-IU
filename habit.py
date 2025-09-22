@@ -14,6 +14,7 @@ class Habit:
         self.name = name
         self.description = description
         self.recurrence = recurrence
+
         self.create_time = datetime.datetime.now()
         self.completed = []
 
