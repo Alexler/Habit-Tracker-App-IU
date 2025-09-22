@@ -54,6 +54,8 @@ class storage_tracker:
             habit = Habit(name, description, recurrence)
             habit.create_time = datetime.datetime.fromisoformat(create_time)
 
+            habit.completed = self.get_completed_habits(name)
+
             all_habits.append(habit)
 
 
