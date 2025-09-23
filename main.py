@@ -13,11 +13,16 @@ import time
 ####   Tests
 
 ### Create different habits ###
-#eat_salat = Habit("eat Salat","dont forget to eat healthy","weekly")
-#running = Habit("go running","training for marathon","weekly")
-#drink_water = Habit("drink water","drink 3L every day","daily")
 
 Tracker_db = Tracker("Tracker DB")
 Tracker_db.storage.setup_db()
 Tracker_db.save_habits_to_db("eat Salat","dont forget to eat healthy","weekly")
-Tracker_db.complete_habits("eat Salat")
+Tracker_db.complete_habits("eat_salat")
+Tracker_db.save_habits_to_db("running","train for marathon","daily")
+Tracker_db.complete_habits("running")
+time.sleep(1)
+Tracker_db.complete_habits("running")
+
+habits = Tracker_db.load_habits_from_db()
+for n in Tracker_db.habits:
+    print(n.name,n.description, n.recurrence, n.create_time, n.completed)

@@ -15,8 +15,6 @@ class Tracker:
         self.habits = []
         self.load_habits_from_db
 
-        print("DB Name: ",db_name)
-
     def load_habits_from_db(self):
         self.habits = self.storage.load_habit()
 
@@ -24,13 +22,10 @@ class Tracker:
         new_habits = Habit(name, description, recurrence)
         self.habits.append(new_habits)
         self.storage.save_habit(new_habits)
-        print("saved new habits: ", new_habits.name, new_habits.description, new_habits.recurrence)
 
     def complete_habits(self, habit_name):
 
         habits_complete = None
-
-
 
         for n in self.habits:
             if n.name == habit_name:
@@ -38,7 +33,7 @@ class Tracker:
                 break
 
         if habits_complete:
-            habits_complete.completed.habits()
+            habits_complete.complete_habits()
             self.storage.save_habit(habits_complete)
 
 
