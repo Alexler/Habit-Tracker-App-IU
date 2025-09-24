@@ -8,6 +8,7 @@
 from habit import Habit
 from storage import storage_tracker
 from tracker import Tracker
+from analytics import get_all_habits, get_habits_by_periodicity
 import time
 
 ####   Tests
@@ -16,13 +17,19 @@ import time
 
 Tracker_db = Tracker("Tracker DB")
 Tracker_db.storage.setup_db()
-Tracker_db.save_habits_to_db("eat Salat","dont forget to eat healthy","weekly")
-Tracker_db.complete_habits("eat_salat")
-Tracker_db.save_habits_to_db("running","train for marathon","daily")
-Tracker_db.complete_habits("running")
+Tracker_db.save_habits_to_db("habit 1","first habit","daily")
+Tracker_db.complete_habits("habit 1")
+Tracker_db.save_habits_to_db("habit 2","2nd habit","weekly")
+
+Tracker_db.complete_habits("habit 1")
 time.sleep(1)
-Tracker_db.complete_habits("running")
+Tracker_db.complete_habits("habit 2")
 
 habits = Tracker_db.load_habits_from_db()
-for n in Tracker_db.habits:
-    print(n.name,n.description, n.recurrence, n.create_time, n.completed)
+
+print(habits)
+
+all_habits = get_all_habits(Tracker_db.habits)
+daily_habits = get_habits_by_periodicity(Tracker_db.habits, "daily")
+print(all_habits)
+print(daily_habits)
