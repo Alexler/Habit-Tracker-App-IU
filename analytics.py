@@ -33,3 +33,4 @@ def get_longest_streak_for_habit(habit_list, habit_name):
         if habit.name == habit_name:
             longest_streak = habit.get_habit_streak()
     return longest_streak
+
