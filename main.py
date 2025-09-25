@@ -8,7 +8,7 @@
 from habit import Habit
 from storage import storage_tracker
 from tracker import Tracker
-from analytics import get_all_habits, get_habits_by_periodicity
+from analytics import get_all_habits, get_habits_by_periodicity, get_longest_streak_all, get_longest_streak_for_habit
 import time
 
 ####   Tests
@@ -33,3 +33,9 @@ all_habits = get_all_habits(Tracker_db.habits)
 daily_habits = get_habits_by_periodicity(Tracker_db.habits, "daily")
 print(all_habits)
 print(daily_habits)
+
+longest_streak = get_longest_streak_all(Tracker_db.habits)
+print(longest_streak)
+
+longest_streak_specific_habit = get_longest_streak_for_habit(Tracker_db.habits,"habit 1")
+print(longest_streak_specific_habit)
