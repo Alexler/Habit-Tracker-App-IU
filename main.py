@@ -21,24 +21,46 @@ def cli():
 @click.option('--recurrence', type=click.Choice(['daily', 'weekly'], case_sensitive=False), default='daily', help='How often will this habit reocurre? (daily/weekly).')
 def add(name, description, recurrence):
     tracker.save_habits_to_db(name, description, recurrence)
-    click.echo("Habit "+{name}+" was added.")
+    click.echo("Habit "+name+" was added.")
 
 @cli.command()
 @click.argument('name')
 def complete(name):
     tracker.complete_habits(name)
-    click.echo("Habit "+{name}+" was marked as complete.")
-
-
+    click.echo("Habit "+name+" was marked as complete.")
 @cli.command(name="list")
 def list_habits():
     if not tracker.habits:
         click.echo("You have no habits yet.")
         return
-
     click.echo("--- All habits ---")
     for habit in tracker.habits:
         streak = habit.get_habit_streak()
-        click.echo("- "+{habit.name}+" "+({habit.recurrence}), "current streak: "+{streak})
+        click.echo("- "+habit.name+" "+(habit.recurrence), "current streak: "+streak)
 
-cli()
+@cli.group()
+def analyze():
+    pass
+@analyze.command(name="all")
+def analyze_all():
+    longest_streak = get_longest_streak_all(tracker.habits)
+    click.echo("The longest streak of all habits: "+ str(longest_streak))
+
+@analyze.command(name="habit")
+@click.argument('name')
+def analyze_habit(name):
+    streak = get_longest_streak_for_habit(tracker.habits, name)
+    click.echo("The longest streak for "+ name +" is: "+ streak)
+
+@analyze.command(name="period")
+@click.argument('period_type', type=click.Choice(['daily', 'weekly'], case_sensitive=False))
+def analyze_period(period_type):
+    habits = get_habits_by_periodicity(tracker.habits, period_type)
+    click.echo("--- All "+period_type+" habits ---")
+    for habit in habits:
+        click.echo("- "+habit.name)
+
+cli.add_command(analyze)
+
+if __name__ == '__main__':
+    cli()
