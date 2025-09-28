@@ -36,7 +36,7 @@ def list_habits():
     click.echo("--- All habits ---")
     for habit in tracker.habits:
         streak = habit.get_habit_streak()
-        click.echo("- "+habit.name+" "+(habit.recurrence), "current streak: "+streak)
+        click.echo("- "+habit.name+" "+(habit.recurrence), "current streak: "+str(streak))
 
 @cli.group()
 def analyze():

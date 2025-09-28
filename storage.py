@@ -22,6 +22,7 @@ class storage_tracker:
         self.conn.commit()
 
     def save_habit(self, habit):
+        self.cursor.execute("DELETE FROM complete_habits WHERE name = ?", (habit.name,))
         self.cursor.execute("INSERT OR REPLACE INTO habits          (name, description, recurrence, create_time)    VALUES (?,?,?,?)", (habit.name, habit.description, habit.recurrence, habit.create_time))
         #self.cursor.execute("INSERT OR REPLACE INTO complete_habits (name, habit_complete_time)                     VALUES (?, ?)", (habit.name, str(habit.completed))
 

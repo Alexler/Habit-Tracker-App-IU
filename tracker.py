@@ -14,7 +14,7 @@ class Tracker:
     def __init__(self, db_name):
         self.storage = storage_tracker(db_name)
         self.habits = []
-        self.load_habits_from_db
+        self.load_habits_from_db()
 
     def load_habits_from_db(self):
         self.habits = self.storage.load_habit()
