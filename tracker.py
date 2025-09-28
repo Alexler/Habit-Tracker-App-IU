@@ -15,6 +15,25 @@ class Tracker:
         self.storage = storage_tracker(db_name)
         self.habits = []
         self.load_habits_from_db()
+        self.check_for_predef_habits()
+
+    def check_for_predef_habits(self):
+        if not self.habits:
+            print("First run detected. Adding predefined habits...")
+
+            predefined_habits = [
+                ("Drink Water", "Drink at least 2L of water", "daily"),
+                ("Read a Book", "Read 10 pages of a book", "daily"),
+                ("Workout", "Complete a 30-minute workout session", "daily"),
+                ("Weekly Review", "Review the past week and plan the next", "weekly"),
+                ("Clean the Apartment", "Do a full clean of the apartment", "weekly")
+            ]
+
+            for habit_data in predefined_habits:
+                name, description, recurrence = habit_data
+                self.save_habits_to_db(name, description, recurrence)
+            self.load_habits_from_db()
+
 
     def load_habits_from_db(self):
         self.habits = self.storage.load_habit()
