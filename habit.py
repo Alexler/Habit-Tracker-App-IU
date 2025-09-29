@@ -24,6 +24,10 @@ class Habit:
 
     def get_habit_streak(self):
         # calculates the streak based on the habit's recurrence
+
+        if not self.completed:
+            return 0
+
         streaks_sorted = sorted(self.completed, reverse=True)
 
         streak = 0
