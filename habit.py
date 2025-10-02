@@ -61,6 +61,3 @@ class Habit:
                 else:
                     break
         return streak
-
-
-

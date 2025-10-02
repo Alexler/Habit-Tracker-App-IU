@@ -55,5 +55,3 @@ class Tracker:
         if habits_complete:
             habits_complete.complete_habits()
             self.storage.save_habit(habits_complete)
-
-

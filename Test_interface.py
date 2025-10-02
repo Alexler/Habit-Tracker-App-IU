@@ -35,5 +35,30 @@ def test_broken_daily_streak():
 
     streak = habit.get_habit_streak()
 
-    assert streak == 0
+    assert streak == 1
 
+def test_weekly_streak():
+    habit = Habit("Test Weekly", "A weekly habit", "weekly")
+
+    today = datetime.datetime.now()
+    six_days_ago = today - datetime.timedelta(days=6)
+
+    habit.completed.append(six_days_ago)
+    habit.completed.append(today)
+
+    streak = habit.get_habit_streak()
+
+    assert streak == 2
+
+def test_broken_weekly_streak():
+    habit = Habit("Test Broken Weekly", "A weekly habit", "weekly")
+
+    today = datetime.datetime.now()
+    eight_days_ago = today - datetime.timedelta(days=8)
+
+    habit.completed.append(eight_days_ago)
+    habit.completed.append(today)
+
+    streak = habit.get_habit_streak()
+
+    assert streak == 1
