@@ -13,7 +13,7 @@ def test_daily_streak():
 
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1)
-    day_before_yesterday = today - yesterday
+    day_before_yesterday = today - datetime.timedelta(days=2)
 
     habit.completed.append(day_before_yesterday)
     habit.completed.append(yesterday)

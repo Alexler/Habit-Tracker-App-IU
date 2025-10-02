@@ -40,7 +40,7 @@ class Habit:
         elif self.recurrence == "weekly":
             if (today - recent_streak).days > 7:
                 return 0
-        streak += 1
+        streak = 1
 
         for i in range(len(streaks_sorted) - 1):
             current_date = streaks_sorted[i].date()
