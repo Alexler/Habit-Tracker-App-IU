@@ -23,6 +23,7 @@ def cli():
 @click.option('--recurrence', type=click.Choice(['daily', 'weekly'], case_sensitive=False), default='daily', help='How often will this habit reocurre? (daily/weekly).')
 
 def add(name, description, recurrence):
+    """Command to add a new habit to the tracker"""
     tracker.save_habits_to_db(name, description, recurrence)
     click.echo("Habit "+name+" was added.")
 
@@ -31,12 +32,14 @@ def add(name, description, recurrence):
 @click.argument('name')
 
 def complete(name):
+    """Command to mark a habit as completed"""
     tracker.complete_habits(name)
     click.echo("Habit "+name+" was marked as complete.")
 
 @cli.command(name="list")
 
 def list_habits():
+    """Command to list all habits inside the tracker"""
     if not tracker.habits:
         click.echo("You have no habits yet.")
         return
@@ -47,6 +50,7 @@ def list_habits():
 
 @cli.group()
 def analyze():
+    """Command to analyze done streaks in the tracker"""
     pass
 
 @analyze.command(name="all")
