@@ -9,8 +9,17 @@
 import datetime
 
 class Habit:
+    """
+    Represents a single user habit with tracking capabilities.
+    Stores metadata (name, description) and a history of completion events.
+    """
     def __init__(self, name: str, description: str, recurrence: str):
-        # initialization of a new habit // construtcor
+        """
+        Initializes a new habit instance.
+        :param name: The unique name of the habit.
+        :param description: A brief description of the task.
+        :param recurrence: The frequency of the habit ('daily' or 'weekly').
+        """
         self.name = name
         self.description = description
         self.recurrence = recurrence
@@ -19,11 +28,18 @@ class Habit:
         self.completed = []
 
     def complete_habits(self):
-        #a habit will be marked as completed here
+        """
+        Marks the habit as completed by appending the current timestamp to the log.
+        """
         self.completed.append(datetime.datetime.now())
 
     def get_habit_streak(self):
-        # calculates the streak based on the habit's recurrence
+        """
+        Calculates the current streak based on the habit's recurrence policy.
+        Checks if the chain of completion is unbroken based on the specific
+        rules for 'daily' (gap > 1 day) or 'weekly' (gap > 7 days).
+        :return: Integer representing the count of consecutive periods.
+        """
 
         if not self.completed:
             return 0
