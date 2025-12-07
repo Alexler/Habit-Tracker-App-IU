@@ -2,9 +2,9 @@
 # Name = Alexander Lerch
 # Matrikelnr. = IU14130774
 
+
 #Scope of this part:
 #This is the Habit class that will be trackable by the user
-
 
 import datetime
 

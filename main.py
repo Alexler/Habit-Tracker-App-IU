@@ -2,8 +2,6 @@
 # Name = Alexander Lerch
 # Matrikelnr. = IU14130774
 
-#Scope of this part:
-# The main app file for handling interactions by the user and the single app components
 
 """
 Main Application Module
@@ -23,7 +21,7 @@ tracker = Tracker("Tracker_DB")
 def cli():
     """
     Habit Tracker CLI interface.
-    Use this tool to add, track, and analyze your habits.
+    Tool to add, track, and analyze your habits.
     """
     pass
 
@@ -34,9 +32,9 @@ def cli():
 def add(name, description, recurrence):
     """
     Command to add a new habit to the tracker.
-    :param name: The unique name of the habit (e.g., 'exercise').
-    :param description: Optional details about the habit.
-    :param recurrence: Frequency of the habit ('daily' or 'weekly').
+    :param name: The unique name of the habit
+    :param description: Optional details about the habit
+    :param recurrence: Frequency of the habit
     """
     tracker.save_habits_to_db(name, description, recurrence)
     click.echo("Habit "+name+" was added.")
